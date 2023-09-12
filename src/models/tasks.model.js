@@ -17,12 +17,15 @@ const Task = db.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "category_id",
+    },
   },
   {
     timestamps: false,
   }
 );
-
-Task.belongsTo(Category, { foreignKey: "categoryId" });
 
 export default Task;

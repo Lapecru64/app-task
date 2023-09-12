@@ -7,8 +7,8 @@ const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const [user, created] = await User.findOrCreate({ 
-      where: { email: email }, // Cambiar 'name' a 'email'
-      defaults: { username, email, password }, // Definir los valores por defecto
+      where: { email: email }, 
+      defaults: { username, email, password }, 
     });
     res.status(201).json(user);
   } catch (error) {
@@ -20,8 +20,11 @@ const createUser = async (req, res) => {
 // Controlador para crear una tarea
 const createTask = async (req, res) => {
   try {
-    const { title, categoryId } = req.body;
-    const task = await Task.create({ title, categoryId });
+    const { title, description, completed } = req.body;
+    const [ task, created] = await Task.findOrCreate({ 
+      where: { title: title }, 
+      defaults: { title, description, completed }, 
+    });
     res.status(201).json(task);
   } catch (error) {
     console.error(error);
@@ -97,7 +100,10 @@ const deleteTask = async (req, res) => {
 const createCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
-    const category = await Category.create({ name, description });
+    const [category, created] = await Category.findOrCreate({ 
+      where: { name: name }, 
+      defaults: { name, description }, 
+    });
     res.status(201).json(category);
   } catch (error) {
     console.error(error);
@@ -105,6 +111,7 @@ const createCategory = async (req, res) => {
   }
 };
 
+    
 export {
   createUser,
   createTask,

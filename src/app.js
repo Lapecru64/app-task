@@ -9,6 +9,10 @@ db.authenticate()
   .then(() => console.log("Base de datos conectada correctamente"))
   .catch((e) => console.error("Error al conectar la base de datos:", e));
 
+db.sync()
+.then(() => console.log("base de datos sincronizada"))
+.catch((error) => console.log(error));
+
 const PORT = process.env.PORT || 8000;
 const app = express();
 

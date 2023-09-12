@@ -23,9 +23,6 @@ const User = db.define(
   }
 );
 
-User.hasMany(Task);
-Task.belongsTo(User);
-
 export default User;
 
   
